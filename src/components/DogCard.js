@@ -1,5 +1,5 @@
 import React from "react";
-
+import dogs from "./dogs.json";
 
 const DogCard = props => (
 

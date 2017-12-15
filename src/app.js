@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import DogCard from "./components/DogCard";
 import Nav from "./components/Nav";
 import Game from "./components/Game";
+import dogs from "./dogs.json";
 
 class App extends Component {
   
@@ -22,12 +23,13 @@ removeDog = id =>  {
           
         <Nav />
         <Game>
-        {this.state.dogs.map(dog=> (
+        {this.state.dogs.map(dog) => (
                 <DogCard
                   
                 />
             ))}
         </Game>
+        
     );
 }
     
