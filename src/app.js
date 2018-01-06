@@ -6,6 +6,10 @@ import Nav from "./components/Nav";
 import Game from "./components/Game";
 import dogs from "./dogs.json";
 
+
+
+//things need to do for game to work. cl
+
 class App extends Component {
   
     state = {
