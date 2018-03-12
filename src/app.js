@@ -21,29 +21,70 @@ import dogs from "./dogs.json";
 class App extends Component {
   
     state = {
-      dogs
+      dogs,
+      currentScore:0,
+      score:0,
     };
 
-removeDog = id =>  {
+
+    componentDidMount() {
+        this.setState({ dogs: this.shuffleDogs(this.state.dogs) });
+      }
+
+    shuffleDogs = dogs => {
+        let i = dogs.length - 1;
+        while (i > 0) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = dogs[i];
+          dogs[i] = dogs[j];
+          dogs[j] = temp;
+          i--;
+        }
+        return dogs;
+      };
 
 
+      handleCorrectGuess = newData => {
+        const { topScore, score } = this.state;
+        const newScore = score + 1;
+        const newTopScore = newScore > topScore ? newScore : topScore;
+        this.setState({
+          dogs: this.shuffleDogs(newData),
+          score: newScore,
+          topScore: newTopScore
+        });
+      };
+    
+      handleIncorrectGuess = dogs => {
+        this.setState({
+          data: this.resetData(dogs),
+          score: 0
+        });
+      };
 
-};
+      resetData = dogs => {
+        const resetData = data.map(id => ({ ...id, clicked: false }));
+        return this.shuffleDogs(resetData);
+      };
 
     render() {
         return (
-          
+    <div>
         <Nav />
         <Game>
-        {this.state.dogs.map(dog) => (
+        {this.state.dogs.map(dog => (
                 <DogCard
-                  
-                />
+                key={item.id}
+                id={item.id}
+                shake={!this.state.score && this.state.topScore}
+                handleClick={this.handleItemClick}
+                image={dog.image}
+              />
             ))}
-        </Game>
+          </Game>
         
-    );
-}
-    
-}    
+        </div>
+      );
+    }
+  }
     export default App;
