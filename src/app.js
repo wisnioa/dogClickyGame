@@ -1,4 +1,4 @@
-import React from "react";
+
 import React, { Component } from "react";
 
 import DogCard from "./components/DogCard";
@@ -57,13 +57,28 @@ class App extends Component {
     
       handleIncorrectGuess = dogs => {
         this.setState({
-          data: this.resetData(dogs),
+          dogs: this.resetData(dogs),
           score: 0
         });
       };
-
+      handleItemClick = id => {
+        let guessedCorrectly = false;
+        const newData = this.state.dogs.map(id => {
+          const newItem = { ...id };
+          if (newItem.id === id) {
+            if (!newItem.clicked) {
+              newItem.clicked = true;
+              guessedCorrectly = true;
+            }
+          }
+          return newItem;
+        });
+        guessedCorrectly
+          ? this.handleCorrectGuess(newData)
+          : this.handleIncorrectGuess(newData);
+      };
       resetData = dogs => {
-        const resetData = data.map(id => ({ ...id, clicked: false }));
+        const resetData = dogs.map(dog => ({ ...dog, clicked: false }));
         return this.shuffleDogs(resetData);
       };
 
@@ -74,9 +89,9 @@ class App extends Component {
         <Game>
         {this.state.dogs.map(dog => (
                 <DogCard
-                key={item.id}
-                id={item.id}
-                shake={!this.state.score && this.state.topScore}
+                key={dog.id}
+                id={dog.id}
+                shake={!this.state.score && this.state.currentScore}
                 handleClick={this.handleItemClick}
                 image={dog.image}
               />
