@@ -45,13 +45,13 @@ class App extends Component {
 
 
       handleCorrectGuess = newData => {
-        const { topScore, score } = this.state;
+        const { currentScore, score } = this.state;
         const newScore = score + 1;
-        const newTopScore = newScore > topScore ? newScore : topScore;
+        const newcurrentScore = newScore > currentScore ? newScore : currentScore;
         this.setState({
           dogs: this.shuffleDogs(newData),
           score: newScore,
-          topScore: newTopScore
+          currentScore: newcurrentScore
         });
       };
     
@@ -78,20 +78,25 @@ class App extends Component {
           : this.handleIncorrectGuess(newData);
       };
       resetData = dogs => {
-        const resetData = dogs.map(dog => ({ ...dog, clicked: false }));
+        const resetData = dogs.map(item => ({ ...item, clicked: false }));
         return this.shuffleDogs(resetData);
       };
 
     render() {
         return (
     <div>
-        <Nav />
+        <Nav
+        score={this.state.score} 
+        currentScore={ this.state.currentScore}
+        />
         <Game>
         {this.state.dogs.map(dog => (
                 <DogCard
                 key={dog.id}
                 id={dog.id}
-                shake={!this.state.score && this.state.currentScore}
+                score={this.state.score}
+                currentScore={this.state.currentScore}
+               
                 handleClick={this.handleItemClick}
                 image={dog.image}
               />

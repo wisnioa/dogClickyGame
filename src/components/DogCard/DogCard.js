@@ -5,9 +5,9 @@ import "./DogCard.css";
 const DogCard = props => (
 
 <div 
-role="img"
-aria-label="card"
-className= {`card${props.shake ? " shake" : ""}`}
+
+
+className= "card"
 value= {props.id}  
 onClick= { () => props.handleClick(props.id)}>
 
