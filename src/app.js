@@ -22,7 +22,7 @@ class App extends Component {
   
     state = {
       dogs,
-      currentScore:0,
+   
       score:0,
     };
 
@@ -45,14 +45,14 @@ class App extends Component {
 
 
       handleCorrectGuess = newData => {
-        const { currentScore, score } = this.state;
+        const score = this.state;
         const newScore = score + 1;
-        const newcurrentScore = newScore > currentScore ? newScore : currentScore;
         this.setState({
           dogs: this.shuffleDogs(newData),
           score: newScore,
-          currentScore: newcurrentScore
+         
         });
+        console.log(newScore);
       };
     
       handleIncorrectGuess = dogs => {
@@ -60,6 +60,11 @@ class App extends Component {
           dogs: this.resetData(dogs),
           score: 0
         });
+      };
+
+      resetData = dogs => {
+        const resetData = dogs.map(item => ({ ...item, clicked: false }));
+        return this.shuffleDogs(resetData);
       };
       handleItemClick = id => {
         let guessedCorrectly = false;
@@ -77,17 +82,14 @@ class App extends Component {
           ? this.handleCorrectGuess(newData)
           : this.handleIncorrectGuess(newData);
       };
-      resetData = dogs => {
-        const resetData = dogs.map(item => ({ ...item, clicked: false }));
-        return this.shuffleDogs(resetData);
-      };
+      
 
     render() {
         return (
     <div>
         <Nav
         score={this.state.score} 
-        currentScore={ this.state.currentScore}
+        
         />
         <Game>
         {this.state.dogs.map(dog => (
@@ -95,8 +97,6 @@ class App extends Component {
                 key={dog.id}
                 id={dog.id}
                 score={this.state.score}
-                currentScore={this.state.currentScore}
-               
                 handleClick={this.handleItemClick}
                 image={dog.image}
               />

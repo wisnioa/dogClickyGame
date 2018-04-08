@@ -5,8 +5,6 @@ import "./DogCard.css";
 const DogCard = props => (
 
 <div 
-
-
 className= "card"
 value= {props.id}  
 onClick= { () => props.handleClick(props.id)}>
