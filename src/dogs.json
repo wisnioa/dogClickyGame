@@ -1,50 +1,62 @@
 [
     {
       "id": 1,
+      "clicked": false,
       "image": "https://dog.ceo/api/img/retriever-golden/n02099601_8429.jpg"
     },
     {
       "id": 2,
+      "clicked": false,
       "image": "https://dog.ceo/api/img/newfoundland/n02111277_10573.jpg"
     },
     {
       "id": 3,
+      "clicked": false,
       "image": "https://dog.ceo/api/img/setter-gordon/n02101006_795.jpg"
     },
     {
       "id": 4,
+      "clicked": false,
       "image": "https://dog.ceo/api/img/hound-Ibizan/n02091244_4281.jpg"
     },
     {
       "id": 5,
+      "clicked": false,
       "image": "https://dog.ceo/api/img/saluki/n02091831_956.jpg"
     },
     {
       "id": 6,
+      "clicked": false,
       "image": "https://dog.ceo/api/img/hound-walker/n02089867_1310.jpg"
     },
     {
       "id": 7,
+      "clicked": false,
       "image": "https://dog.ceo/api/img/appenzeller/n02107908_2723.jpg"
     },
     {
       "id": 8,
+      "clicked": false,
       "image": "https://dog.ceo/api/img/labrador/n02099712_7179.jpg"
     },
     {
       "id": 9,
+      "clicked": false,
       "image": "https://dog.ceo/api/img/wolfhound-irish/n02090721_1105.jpg"
     },
     {
       "id": 10,
+      "clicked": false,
       "image": "https://dog.ceo/api/img/hound-afghan/n02088094_11953.jpg"
     },
     {
       "id": 11,
+      "clicked": false,
       "image": "https://dog.ceo/api/img/akita/Japaneseakita.jpg"
     },
     {
       "id": 12,
+      "clicked": false,
       "image": "https://dog.ceo/api/img/basenji/n02110806_2006.jpg"
     }
   ]

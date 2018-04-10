@@ -22,8 +22,8 @@ class App extends Component {
   
     state = {
       dogs,
-   
-      score:0,
+      clicked: false,
+      score:0
     };
 
 
@@ -74,9 +74,12 @@ class App extends Component {
             if (!newItem.clicked) {
               newItem.clicked = true;
               guessedCorrectly = true;
+              console.log("this is clicked item");
+              console.log(newItem.clicked);
             }
           }
           return newItem;
+        
         });
         guessedCorrectly
           ? this.handleCorrectGuess(newData)
@@ -89,14 +92,13 @@ class App extends Component {
     <div>
         <Nav
         score={this.state.score} 
-        
         />
         <Game>
         {this.state.dogs.map(dog => (
                 <DogCard
                 key={dog.id}
                 id={dog.id}
-                score={this.state.score}
+                shake={!this.state.score && this.state.topScore}
                 handleClick={this.handleItemClick}
                 image={dog.image}
               />
