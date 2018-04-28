@@ -8,14 +8,6 @@ import dogs from "./dogs.json";
 
 
 
-//Checklist---things need to do for game to work/finish 
-// 1.randomize of cards function
-// 2. handle points increment (when different dog clicked, else no points)
-// 3. handle total points logic (when user wins so many in a row, else user doesnt
-// get points)
-// 4.Add some CSS if I am feeling fancy
-
-
 
 
 class App extends Component {
@@ -23,7 +15,7 @@ class App extends Component {
     state = {
       dogs,
       clicked: false,
-      score:0
+      score: 0
     };
 
 
@@ -45,19 +37,19 @@ class App extends Component {
 
 
       handleCorrectGuess = newData => {
-        const score = this.state;
+        const score = this.state.score;
         const newScore = score + 1;
         this.setState({
           dogs: this.shuffleDogs(newData),
           score: newScore,
-         
+          
         });
         console.log(newScore);
       };
     
-      handleIncorrectGuess = dogs => {
+      handleIncorrectGuess = data => {
         this.setState({
-          dogs: this.resetData(dogs),
+          dogs: this.resetData(data),
           score: 0
         });
       };
@@ -66,11 +58,13 @@ class App extends Component {
         const resetData = dogs.map(item => ({ ...item, clicked: false }));
         return this.shuffleDogs(resetData);
       };
+      
       handleItemClick = id => {
         let guessedCorrectly = false;
-        const newData = this.state.dogs.map(id => {
-          const newItem = { ...id };
-          if (newItem.id === id) {
+     
+        const newData = this.state.dogs.map(item => {
+          const newItem = { ...item };
+          if (newItem.id === item.id) {
             if (!newItem.clicked) {
               newItem.clicked = true;
               guessedCorrectly = true;
@@ -80,7 +74,7 @@ class App extends Component {
           }
           return newItem;
         
-        });
+        })
         guessedCorrectly
           ? this.handleCorrectGuess(newData)
           : this.handleIncorrectGuess(newData);
@@ -93,12 +87,13 @@ class App extends Component {
         <Nav
         score={this.state.score} 
         />
+
         <Game>
         {this.state.dogs.map(dog => (
                 <DogCard
                 key={dog.id}
                 id={dog.id}
-                shake={!this.state.score && this.state.topScore}
+                score={this.state.score}
                 handleClick={this.handleItemClick}
                 image={dog.image}
               />

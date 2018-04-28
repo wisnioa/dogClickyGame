@@ -7,7 +7,7 @@ const Nav = props  => (
 
 <nav className="navbar navbar-light">
 <span className="navbar-brand">Dog Clicky Game</span>
-<span className="navbar-text">Total Score: {props.currentScore} </span>
+
 
 <span className="navbar-text">Score: {props.score} </span>
 </nav>
